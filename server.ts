@@ -1,5 +1,7 @@
 import fastify from 'fastify' //Criando servidor com Fastify.
 import crypto from 'node:crypto'
+import{ db} from './src/database/client.ts'
+import{ courses } from './src/database/schema.ts'
 
 const server = fastify({
     logger: {
@@ -14,18 +16,14 @@ const server = fastify({
 })
 
 
-const courses = [
-    { id: '1', title: 'Curso de React Native' },
-    { id: '2', title: 'Curso de Node.js' },
-    { id: '3', title: 'Curso de Kotlin' }
-]
-
 //Criando rotas.
 
-server.get('/courses', () => { 
-    return { courses }
+server.get('/courses', async (request, reply) => { 
+    const result = await db.select().from(courses)
+    return reply.send({ result })
 })
 
+/*
 server.get('/courses/:id', (request, reply) => { 
     type Params = {
         id: string
@@ -62,6 +60,7 @@ server.post('/courses', (request, reply) => { //Criar Cursos.
 
     return reply.status(201).send({ courseId }) //Retorna um status caso esteja tudo correto.
 })
+*/
 
 server.listen ({port:3333}).then(() => {
     console.log('HTTP server running!')
