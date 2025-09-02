@@ -1,7 +1,7 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
-import { db } from '../src/database/client'
+import { db } from '../src/database/client.ts'
 import { eq } from 'drizzle-orm'
-import { courses } from '../src/database/schema'
+import { courses } from '../src/database/schema.ts'
 import z from 'zod'
 
 export const deleteCourseRoute: FastifyPluginAsyncZod = async (server) => {
