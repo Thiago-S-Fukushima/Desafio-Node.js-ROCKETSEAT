@@ -5,6 +5,7 @@ import { validatorCompiler, serializerCompiler, type ZodTypeProvider, jsonSchema
 import { createCoursesRoute } from './routes/post-courses.ts';
 import { getCoursesRoute } from './routes/get-courses.ts';
 import { getCourseByIdRoute } from './routes/get-courses-by-id.ts';
+import {deleteCourseRoute } from './routes/delete-courses.ts';
 
 const server = fastify({
     logger: {
@@ -37,9 +38,10 @@ server.register(fastifySwaggerUi, {
 server.register(createCoursesRoute)
 server.register(getCoursesRoute)
 server.register(getCourseByIdRoute)
+server.register(deleteCourseRoute)
 
 server.setValidatorCompiler(validatorCompiler) //faz uma chegagem nos dados de entrada.
-server.setSerializerCompiler(serializerCompiler) //converter os dados de saída de uma rota em outro formato.
+server.setSerializerCompiler(serializerCompiler) //converte os dados de saída de uma rota em outro formato.
 
 server.listen ({port:3333}).then(() => { //Faz o código ouvir a porta 3333.
     console.log('HTTP server running!')

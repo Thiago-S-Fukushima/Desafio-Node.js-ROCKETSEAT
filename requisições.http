@@ -2,7 +2,7 @@ POST http://localhost:3333/courses
 Content-Type: application/json
 
 {
-    "title": ""
+    "title": "Curso de phyton"
 }
 
 ###
@@ -11,4 +11,9 @@ GET http://localhost:3333/courses
 
 ###
 
-GET http://localhost:3333/courses/7c91f99a-e479-4667-9f67-00a0ac7fa27f
+GET http://localhost:3333/courses/8b6da91a-688c-49bf-94da-54c0ce9b5853
+
+
+###
+
+DELETE http://localhost:3333/courses/8b6da91a-688c-49bf-94da-54c0ce9b5853
